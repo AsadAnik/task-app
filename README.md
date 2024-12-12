@@ -88,7 +88,7 @@ Follow these steps to set up the app locally:
 
 | **Task Management**              | **Post List with Pagination**  | **Form Screen**           |
 |----------------------------------|--------------------------------|---------------------------|
-| ![Task Screen](assets/images/1.png) | ![Post List](assets/images/2.png) | ![Form Screen](assets/images/3.png) |
+| ![Task Screen](assets/images/11.png) | ![Post List](assets/images/2.png) | ![Form Screen](assets/images/3.png) |
 
 ---
 
