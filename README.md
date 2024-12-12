@@ -88,7 +88,8 @@ Follow these steps to set up the app locally:
 
 ---
 
-📥 Download APK
+### 📥 Download APK
+
 You can download and test the APK directly from the link below:
 [Download APK](https://drive.google.com/file/d/1dxX8bvsFl_gwEs7PGreXPMJ7xkp5xxeO/view?usp=drive_link)
 
