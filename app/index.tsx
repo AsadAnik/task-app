@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import { useAppContext } from '../context/AppContext';
+import { useAppContext } from '@/context/AppContext';
 import { MaterialIcons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
+import { EmptyUI } from '@/components/widgets';
 
 const TaskManagerScreen = () => {
     const [taskText, setTaskText] = useState<string>('');
@@ -21,6 +22,11 @@ const TaskManagerScreen = () => {
     const toggleTheme = () => {
         dispatch({ type: 'SET_THEME', payload: state.theme === 'light' ? 'dark' : 'light' });
     };
+
+    // Checking if there are tasks or deleted tasks
+    // region Check Tasks
+    const isTasksEmpty = state.tasks.filter((task) => !task.deleted).length === 0;
+    const isDeletedTasksEmpty = state.tasks.filter((task) => task.deleted).length === 0;
 
     // Renders the UI
     // region Render UI
@@ -68,43 +74,53 @@ const TaskManagerScreen = () => {
                 </View>
 
                 {/* Task List */}
-                <FlatList
-                    data={state.tasks.filter((task) => !task.deleted)}
-                    renderItem={({ item }) => (
-                        <View style={styles.task}>
-                            <TouchableOpacity onPress={() => dispatch({ type: 'TOGGLE_COMPLETE_TASK', payload: item.id })}>
-                                <Text style={[styles.taskText, item.completed && styles.completedTask, { color: state.theme === 'light' ? '#000' : '#FFF' }]}>
-                                    {item.text}
-                                </Text>
-                            </TouchableOpacity>
 
-                            <Button
-                                title="Delete"
-                                onPress={() => dispatch({ type: 'DELETE_TASK', payload: item.id })}
-                                color="red"
-                            />
-                        </View>
-                    )}
-                    keyExtractor={(item) => item.id.toString()}
-                />
+                {!isTasksEmpty ? (
+                    <FlatList
+                        data={state.tasks.filter((task) => !task.deleted)}
+                        renderItem={({ item }) => (
+                            <View style={styles.task}>
+                                <TouchableOpacity onPress={() => dispatch({ type: 'TOGGLE_COMPLETE_TASK', payload: item.id })}>
+                                    <Text style={[styles.taskText, item.completed && styles.completedTask, { color: state.theme === 'light' ? '#000' : '#FFF' }]}>
+                                        {item.text}
+                                    </Text>
+                                </TouchableOpacity>
+
+                                <Button
+                                    title="Delete"
+                                    onPress={() => dispatch({ type: 'DELETE_TASK', payload: item.id })}
+                                    color="red"
+                                />
+                            </View>
+                        )}
+                        keyExtractor={(item) => item.id.toString()}
+                    />
+                ) : (
+                    <EmptyUI title="No Tasks" />
+                )}
 
                 {/* Deleted Tasks Section */}
                 <Text style={[styles.deletedHeader, { color: state.theme === 'light' ? '#000' : 'red' }]}>Deleted Tasks</Text>
-                <FlatList
-                    data={state.tasks.filter((task) => task.deleted)}
-                    renderItem={({ item }) => (
-                        <View style={styles.task}>
-                            <Text style={{ color: state.theme === 'light' ? '#000' : '#f07777' }}>{item.text}</Text>
 
-                            <Button
-                                title="Restore"
-                                onPress={() => dispatch({ type: 'RESTORE_TASK', payload: item.id })}
-                                color="green"
-                            />
-                        </View>
-                    )}
-                    keyExtractor={(item) => item.id.toString()}
-                />
+                {!isDeletedTasksEmpty ? (
+                    <FlatList
+                        data={state.tasks.filter((task) => task.deleted)}
+                        renderItem={({ item }) => (
+                            <View style={styles.task}>
+                                <Text style={{ color: state.theme === 'light' ? '#000' : '#f07777' }}>{item.text}</Text>
+
+                                <Button
+                                    title="Restore"
+                                    onPress={() => dispatch({ type: 'RESTORE_TASK', payload: item.id })}
+                                    color="green"
+                                />
+                            </View>
+                        )}
+                        keyExtractor={(item) => item.id.toString()}
+                    />
+                ) : (
+                    <EmptyUI title="No Deleted Tasks" type="deleted" />
+                )}
             </View>
         </>
     );

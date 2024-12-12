@@ -2,7 +2,7 @@
   "expo": {
     "name": "task-react-native",
     "slug": "task-react-native",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -12,6 +12,16 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.taskreactnative",
+      "versionCode": 2,
+      "permissions": [
+        "android.permission.EXTERNAL_STORAGE",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.INTERNAL_STORAGE",
+        "android.permission.READ_INTERNAL_STORAGE",
+        "android.permission.WRITE_INTERNAL_STORAGE"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -36,6 +46,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "aaf00d5a-d224-40e2-9ca9-36e45300ff01"
+      }
+    },
+    "owner": "asad_anik"
   }
 }

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, RefreshControl, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAppContext } from '@/context/AppContext';
+import { EmptyUI } from '@/components/widgets';
 
 const PostsScreen = () => {
     const { state } = useAppContext();
@@ -74,25 +75,32 @@ const PostsScreen = () => {
         <View style={styles.container}>
             <FlatList
                 data={posts}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        style={styles.postContainer}
-                        onPress={() => router.push(`/posts/${item.id}`)}
-                    >
-                        <Text style={styles.postTitle}>{item.title}</Text>
-                    </TouchableOpacity>
-                )}
+                renderItem={
+                    ({ item }) => (
+                        <TouchableOpacity
+                            style={styles.postContainer}
+                            onPress={() => router.push(`/posts/${item.id}`)}
+                        >
+                            <Text style={styles.postTitle}>{item.title}</Text>
+                        </TouchableOpacity>
+                    )
+                }
                 keyExtractor={(item) => item.id.toString()}
                 refreshControl={
-                    <RefreshControl refreshing={loading} onRefresh={() => fetchPosts(1)} />
+                    < RefreshControl refreshing={loading} onRefresh={() => fetchPosts(1)} />
                 }
                 onEndReached={() => setPage((prev) => prev + 1)}
                 onEndReachedThreshold={0.5}
                 ListFooterComponent={
                     loading ? <ActivityIndicator size="large" color="#007bff" /> : null
                 }
+                ListEmptyComponent={
+                    !loading ? (
+                        <EmptyUI title="No posts found" />
+                    ) : null
+                }
             />
-        </View>
+        </View >
     );
 };
 

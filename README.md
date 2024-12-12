@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/images/icon.png" width="150" height="150" alt="Task Manager Icon"/>
+</p>
+
 # Task Manager App
 
 Welcome to the **Task Manager App** repository! This project was developed as part of an interview task to demonstrate proficiency in **React Native** development, state management, and implementing core app features. It includes task management, post listing with pagination, theme toggling, and a form screen, adhering to the provided requirements while showcasing professional coding practices and clean architecture.
