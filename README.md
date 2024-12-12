@@ -1,50 +1,139 @@
-# Welcome to your Expo app 👋
+# Task Manager App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to the **Task Manager App** repository! This project was developed as part of an interview task to demonstrate proficiency in **React Native** development, state management, and implementing core app features. It includes task management, post listing with pagination, theme toggling, and a form screen, adhering to the provided requirements while showcasing professional coding practices and clean architecture.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Features
 
+### **1. Task Management Screen**
+- **Add Tasks**: Users can add tasks by entering text.
+- **View Tasks**: Tasks are displayed in a clean, user-friendly list.
+- **Delete & Restore**: 
+  - Deleted tasks are moved to the bottom of the list with an option to restore them.
+- **Mark as Completed**: Users can mark tasks as completed (Bonus feature).
+- **Local Persistence**: Tasks are stored locally for persistence across sessions.
+
+### **2. Post List with Pagination**
+- **Fetch Data**: Retrieves posts from [JSONPlaceholder](https://jsonplaceholder.typicode.com/).
+- **Pagination**: Custom implementation of pagination without any third-party libraries to display posts in chunks of 10.
+- **Dedicated Post Screen**: Users can tap a post to view its details on a separate screen.
+
+### **3. Light/Dark Theme**
+- **Dynamic Theming**: Implements light and dark themes.
+- **System Theme Detection**: Automatically detects and applies the user's system theme during the app launch.
+- **User Toggle**: Users can toggle between light and dark themes from the app.
+
+### **4. Form Screen**
+- **Form Inputs**: Allows users to:
+  - Upload a picture.
+  - Enter their name and email.
+- **On Submission**: 
+  - Displays a success message.
+  - Redirects the user to the home screen.
+  - Shows the submitted data in a modal for review.
+
+### **5. State Management**
+- Uses centralized state management to handle the app's tasks, posts, and theme.
+
+---
+
+## 🛠️ Tech Stack
+
+### **Core Technologies**
+- **React Native**: Framework for building cross-platform mobile apps.
+- **Context API**: For efficient state management.
+- **AsyncStorage**: To persist tasks and settings locally.
+
+---
+
+## 📂 Directory Structure
+
+```plaintext
+src/
+├── app/             # Screens/Navigations for Task Manager, Post List, Form, etc.
+├── context/         # Context API for state management
+├── components/      # Reusable UI components
+├── constants/       # Constants used throughout the app
+├── assets/          # Images, icons, etc.
+└── hooks            # Applications Custom hooks
+```
+
+---
+
+## 🔧 Installation and Setup
+
+Follow these steps to set up the app locally:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/AsadAnik/task-app.git
+   cd task-app
+   ```
+
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-2. Start the app
-
+3. **Run the app**:
    ```bash
-    npx expo start
+   npm start
    ```
+   Open the app on an Android or iOS emulator, or use a physical device.
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 📸 Screenshots
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+| **Task Management**              | **Post List with Pagination**  | **Form Screen**           |
+|----------------------------------|--------------------------------|---------------------------|
+| ![Task Screen](assets/images/1.png) | ![Post List](assets/images/2.png) | ![Form Screen](assets/images/3.png) |
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 🌟 Highlights
 
-```bash
-npm run reset-project
-```
+- **Professional Coding Practices**: The app is built with clean architecture, modular components, and reusable styles.
+- **No Third-Party Libraries**: Implements pagination and state management natively, showcasing a strong understanding of React Native's core capabilities.
+- **Dynamic Theme**: A seamless light/dark theme switcher enhances user experience.
+- **Local Storage**: Ensures user data persistence for a professional app experience.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 🧩 How It Works
 
-To learn more about developing your project with Expo, look at the following resources:
+### **Task Management**
+- Tasks are stored in the context state and persisted using `AsyncStorage`.
+- Deleted tasks are filtered and displayed separately, with an option to restore them.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### **Post Pagination**
+- Fetches posts using `fetch` and displays them in chunks of 10.
+- Pagination is handled using internal state to manage visible posts.
 
-## Join the community
+### **Theme Management**
+- Detects the system theme using `Appearance.getColorScheme()`.
+- Provides a toggle feature to switch themes manually.
 
-Join our community of developers creating universal apps.
+### **Form Functionality**
+- On form submission:
+  - Data is displayed in a modal.
+  - User is redirected to the home screen.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 📖 Future Improvements
+
+- Add **unit and integration tests** for better code coverage.
+- Enhance UI/UX with animations and transitions.
+- Implement **offline support** for posts using a caching mechanism.
+
+---
+
+## 🤝 Acknowledgments
+
+Special thanks to the interview panel for providing this engaging task. It allowed me to demonstrate not only my technical skills but also my problem-solving approach and attention to detail.
+
+---
+
+Feel free to reach out for further clarifications or improvements. Thank you for reviewing my project! 😊
